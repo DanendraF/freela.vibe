@@ -168,38 +168,40 @@ function JelajahiVibe() {
     <section className="bg-vibe-cream py-16">
       <div className="mx-auto max-w-[1400px] px-6">
         <MotionSection>
-          <p className="text-xs uppercase tracking-[0.28em] text-vibe-terracotta">02 · Explore The Vibes</p>
-          <h2 className="mt-3 font-display text-4xl text-vibe-charcoal md:text-5xl">Explore Jogja Vibes</h2>
-          <p className="mt-3 max-w-md text-vibe-charcoal/70">
-            Every corner of the city has a unique atmosphere and character.
-          </p>
-          <button className="mt-5 inline-flex items-center gap-2 rounded-full bg-vibe-sage px-5 py-2.5 text-sm text-vibe-cream transition hover:bg-vibe-charcoal">
-            Explore All Vibes <ArrowRight size={14} />
-          </button>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.28em] text-vibe-terracotta">02 · Explore The Vibes</p>
+              <h2 className="mt-3 font-display text-4xl text-vibe-charcoal md:text-5xl">Explore Jogja Vibes</h2>
+              <p className="mt-3 max-w-md text-vibe-charcoal/70">
+                Every corner of the city has a unique atmosphere and character.
+              </p>
+            </div>
+            <button className="mt-5 hidden items-center gap-2 rounded-full bg-vibe-sage px-5 py-2.5 text-sm text-vibe-cream transition hover:bg-vibe-charcoal md:inline-flex">
+              Explore All Vibes <ArrowRight size={14} />
+            </button>
+          </div>
         </MotionSection>
-      </div>
 
-      <div className="relative mt-10">
-        <div 
-          className="flex snap-x snap-mandatory scroll-smooth gap-4 overflow-x-auto px-6 pb-4 min-[1400px]:px-[calc((100%-1400px)/2+1.5rem)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-        >
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {vibeAreas.map((v, i) => (
             <MotionSection key={v.name} delay={i * 0.04}>
               <motion.div
                 whileHover={{ y: -6 }}
-                className="group relative h-[360px] w-44 shrink-0 snap-start overflow-hidden rounded-3xl bg-vibe-charcoal shadow-[0_18px_40px_-22px_rgba(44,44,44,0.5)] md:w-48"
+                className="group relative h-[320px] w-full overflow-hidden rounded-3xl bg-vibe-charcoal shadow-[0_18px_40px_-22px_rgba(44,44,44,0.5)]"
               >
                 <img src={v.img} alt={v.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-80 transition group-hover:scale-105 group-hover:opacity-90" />
                 <div className="absolute inset-0 bg-gradient-to-t from-vibe-charcoal via-vibe-charcoal/30 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5 text-vibe-cream">
+                <div className="absolute inset-x-0 bottom-0 p-6 text-vibe-cream">
                   <h3 className="font-display text-2xl leading-tight">{v.name}</h3>
-                  <p className="mt-1.5 text-[12px] leading-snug text-vibe-cream/85">{v.desc}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-vibe-cream/85">{v.desc}</p>
                 </div>
               </motion.div>
             </MotionSection>
           ))}
-          <button className="mt-auto mb-2 hidden h-12 w-12 shrink-0 self-end items-center justify-center rounded-full bg-white shadow-md md:flex">
-            <ArrowRight size={16} className="text-vibe-charcoal" />
+        </div>
+        <div className="mt-8 text-center md:hidden">
+          <button className="inline-flex items-center gap-2 rounded-full bg-vibe-sage px-6 py-3 text-sm text-vibe-cream shadow-md transition hover:bg-vibe-charcoal">
+            Explore All Vibes <ArrowRight size={16} />
           </button>
         </div>
       </div>
@@ -225,6 +227,14 @@ const stories: Story[] = [
 
 function HiddenStories() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // initial check
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -234,13 +244,13 @@ function HiddenStories() {
   }, []);
 
   const cardVariants = {
-    front: { opacity: 1, y: 0, x: 90, scale: 1, zIndex: 10 },
-    behind1: { opacity: 1, y: -35, x: 125, scale: 0.94, zIndex: 9 },
-    behind2: { opacity: 0.85, y: -70, x: 160, scale: 0.88, zIndex: 8 },
-    behind3: { opacity: 0.6, y: -105, x: 195, scale: 0.82, zIndex: 7 },
-    behind4: { opacity: 0.3, y: -140, x: 230, scale: 0.76, zIndex: 6 },
-    leave: { opacity: 0, y: 50, x: -50, scale: 1.05, zIndex: 11, rotate: -5 },
-    hidden: { opacity: 0, y: -150, x: 240, scale: 0.7, zIndex: 0 },
+    front: { opacity: 1, y: 0, x: isMobile ? 0 : 90, scale: 1, zIndex: 10 },
+    behind1: { opacity: 1, y: isMobile ? -20 : -35, x: isMobile ? 0 : 125, scale: isMobile ? 0.95 : 0.94, zIndex: 9 },
+    behind2: { opacity: 0.85, y: isMobile ? -40 : -70, x: isMobile ? 0 : 160, scale: isMobile ? 0.90 : 0.88, zIndex: 8 },
+    behind3: { opacity: 0.6, y: isMobile ? -60 : -105, x: isMobile ? 0 : 195, scale: isMobile ? 0.85 : 0.82, zIndex: 7 },
+    behind4: { opacity: 0.3, y: isMobile ? -80 : -140, x: isMobile ? 0 : 230, scale: isMobile ? 0.80 : 0.76, zIndex: 6 },
+    leave: { opacity: 0, y: isMobile ? 50 : 50, x: isMobile ? -50 : -50, scale: 1.05, zIndex: 11, rotate: -5 },
+    hidden: { opacity: 0, y: isMobile ? -100 : -150, x: isMobile ? 0 : 240, scale: 0.7, zIndex: 0 },
   };
 
   return (
@@ -273,7 +283,7 @@ function HiddenStories() {
             return (
               <motion.div
                 key={s.title}
-                className="absolute w-full max-w-md origin-bottom"
+                className="absolute w-full max-w-[90vw] md:max-w-md origin-bottom"
                 variants={cardVariants}
                 initial="hidden"
                 animate={position}
@@ -282,14 +292,14 @@ function HiddenStories() {
                 <div
                   className="group flex w-full flex-col gap-4 rounded-3xl bg-white p-5 text-left shadow-[0_20px_50px_-20px_rgba(44,44,44,0.3)] transition-colors"
                 >
-                  <img src={s.img} alt={s.title} loading="lazy" className="h-56 w-full rounded-2xl object-cover" />
+                  <img src={s.img} alt={s.title} loading="lazy" className="h-48 md:h-56 w-full rounded-2xl object-cover" />
                   <div className="flex w-full items-center justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <s.icon size={18} className="text-vibe-terracotta" />
-                        <h3 className="font-display text-2xl text-vibe-charcoal">{s.title}</h3>
+                        <h3 className="font-display text-xl md:text-2xl text-vibe-charcoal">{s.title}</h3>
                       </div>
-                      <p className="mt-2 text-sm leading-relaxed text-vibe-charcoal/70">{s.desc}</p>
+                      <p className="mt-2 text-xs md:text-sm leading-relaxed text-vibe-charcoal/70">{s.desc}</p>
                     </div>
                     {offset === 0 && (
                       <button
