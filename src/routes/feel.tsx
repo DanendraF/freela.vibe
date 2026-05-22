@@ -15,12 +15,12 @@ export const Route = createFileRoute("/feel")({
 });
 
 const board = [
-  { tag: "Art", title: "ARTJOG painting exhibition", h: 280 },
-  { tag: "Music", title: "Acoustic sunset at Tugu", h: 220 },
-  { tag: "Workshop", title: "Zine printing in Kotagede", h: 320 },
-  { tag: "Community", title: "Prawirotaman Sunday market", h: 200 },
-  { tag: "Talk", title: "Civic talk: inclusive city", h: 260 },
-  { tag: "Food", title: "Angkringan festival", h: 240 },
+  { tag: "Art", title: "ARTJOG painting exhibition", h: 280, img: "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800&q=80" },
+  { tag: "Music", title: "Acoustic sunset at Tugu", h: 220, img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80" },
+  { tag: "Workshop", title: "Zine printing in Kotagede", h: 320, img: "https://images.unsplash.com/photo-1561112078-7d22dc3c3fd0?w=800&q=80" },
+  { tag: "Community", title: "Prawirotaman Sunday market", h: 200, img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=800&q=80" },
+  { tag: "Talk", title: "Civic talk: inclusive city", h: 260, img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" },
+  { tag: "Food", title: "Angkringan festival", h: 240, img: "https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800&q=80" },
 ];
 
 
@@ -56,20 +56,22 @@ function FeelPage() {
                 whileHover={{ y: -6 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="mb-4 break-inside-avoid overflow-hidden rounded-3xl bg-white"
+                className="mb-4 group relative break-inside-avoid overflow-hidden rounded-3xl bg-vibe-charcoal shadow-sm"
               >
                 <div
-                  className="flex items-end p-5"
-                  style={{
-                    height: b.h,
-                    background: `linear-gradient(180deg, ${
-                      ["#A8C5A0", "#B8A9D4", "#D4956A", "#E8DDD0"][i % 4]
-                    } 0%, #f5f0e8 100%)`,
-                  }}
+                  className="flex items-end p-5 relative overflow-hidden"
+                  style={{ height: b.h }}
                 >
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.18em] text-vibe-charcoal/70">{b.tag}</p>
-                    <p className="mt-1 font-display text-xl text-vibe-charcoal">{b.title}</p>
+                  <img 
+                    src={b.img} 
+                    alt={b.title} 
+                    loading="lazy" 
+                    className="absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-500 group-hover:scale-110 group-hover:opacity-100" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-vibe-charcoal via-vibe-charcoal/40 to-transparent" />
+                  <div className="relative z-10">
+                    <p className="text-xs font-medium uppercase tracking-[0.18em] text-vibe-cream/80">{b.tag}</p>
+                    <p className="mt-1.5 font-display text-xl leading-tight text-vibe-cream">{b.title}</p>
                   </div>
                 </div>
               </motion.div>
