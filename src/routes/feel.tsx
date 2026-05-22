@@ -28,9 +28,13 @@ const board = [
 function FeelPage() {
   return (
     <>
-      <section className="grain relative overflow-hidden bg-gradient-to-b from-vibe-warm to-[#f0e2cf] pt-36 pb-24">
-        <div className="mx-auto max-w-[1400px] px-6">
-          <p className="text-xs uppercase tracking-[0.28em] text-vibe-terracotta">Feel included</p>
+      <section 
+        className="grain relative overflow-hidden bg-cover bg-center pt-36 pb-24"
+        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=1600&q=80')` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-vibe-warm/85 to-[#f0e2cf]/95 backdrop-blur-[2px]" />
+        <div className="relative z-10 mx-auto max-w-[1400px] px-6">
+          <p className="text-xs font-medium uppercase tracking-[0.28em] text-vibe-terracotta drop-shadow-sm">Feel included</p>
           <h1 className="mt-3 font-display text-6xl text-vibe-charcoal md:text-8xl">Do I belong here?</h1>
           <p className="mt-6 max-w-xl text-vibe-charcoal/80">
             Your voice shapes Jogja. Vibe Board for inspiration, Jogja Pulse for civic participation.

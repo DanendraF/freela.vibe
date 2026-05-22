@@ -123,9 +123,13 @@ function WorkPage() {
 
   return (
     <>
-      <section className="grain relative overflow-hidden bg-gradient-to-b from-vibe-clay to-vibe-terracotta pt-36 pb-24 text-vibe-cream">
-        <div className="mx-auto max-w-[1400px] px-6">
-          <p className="text-xs uppercase tracking-[0.28em] text-vibe-cream/80">Work</p>
+      <section 
+        className="grain relative overflow-hidden bg-cover bg-center pt-36 pb-24 text-vibe-cream"
+        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=1600&q=80')` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-vibe-clay/85 to-vibe-terracotta/95 backdrop-blur-[2px]" />
+        <div className="relative z-10 mx-auto max-w-[1400px] px-6">
+          <p className="text-xs font-medium uppercase tracking-[0.28em] text-vibe-cream/90 drop-shadow-sm">Work</p>
           <h1 className="mt-3 font-display text-6xl md:text-8xl">Can I make a living?</h1>
           <p className="mt-6 max-w-xl text-vibe-cream/80">
             Talent Hub connects you with SMEs, startups, and NGOs. Coworking finder helps you find the right rhythm.

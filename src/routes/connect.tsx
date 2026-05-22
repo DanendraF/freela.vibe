@@ -42,9 +42,13 @@ function ConnectPage() {
 
   return (
     <>
-      <section className="grain relative overflow-hidden bg-gradient-to-b from-vibe-lavender to-[#cdc0e0] pt-36 pb-24">
-        <div className="mx-auto max-w-[1400px] px-6">
-          <p className="text-xs uppercase tracking-[0.28em] text-vibe-charcoal/70">Connect</p>
+      <section 
+        className="grain relative overflow-hidden bg-cover bg-center pt-36 pb-24"
+        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=1600&q=80')` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-vibe-lavender/85 to-[#cdc0e0]/95 backdrop-blur-[2px]" />
+        <div className="relative z-10 mx-auto max-w-[1400px] px-6">
+          <p className="text-xs font-medium uppercase tracking-[0.28em] text-vibe-charcoal/90 drop-shadow-sm">Connect</p>
           <h1 className="mt-3 font-display text-6xl text-vibe-charcoal md:text-8xl">
             Can I find my people?
           </h1>

@@ -41,9 +41,13 @@ function WelcomeHeader() {
     { label: "Upcoming event", value: "ARTJOG · 3 days", icon: Sparkles },
   ];
   return (
-    <section className="grain relative overflow-hidden bg-gradient-to-b from-vibe-mint to-vibe-sage pt-36 pb-20">
-      <div className="mx-auto max-w-[1400px] px-6">
-        <p className="text-xs uppercase tracking-[0.28em] text-vibe-charcoal/70">Arrive · City Adaptation</p>
+    <section 
+      className="grain relative overflow-hidden bg-cover bg-center pt-36 pb-20"
+      style={{ backgroundImage: `url('https://images.unsplash.com/photo-1583309217394-d4afa1b51815?w=1600&q=80')` }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-vibe-mint/85 to-vibe-sage/95 backdrop-blur-[2px]" />
+      <div className="relative z-10 mx-auto max-w-[1400px] px-6">
+        <p className="text-xs font-medium uppercase tracking-[0.28em] text-vibe-charcoal/90 drop-shadow-sm">Arrive · City Adaptation</p>
         <div className="mt-6 flex flex-col gap-6 rounded-3xl bg-white/70 p-6 backdrop-blur-md md:flex-row md:items-center md:justify-between md:p-8">
           <div className="flex items-center gap-5">
             <div className="grid h-16 w-16 place-items-center rounded-2xl bg-vibe-charcoal text-2xl font-display text-vibe-cream">
